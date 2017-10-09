@@ -1,0 +1,16 @@
+.triad-canvas {
+  display: none;
+  width: 300px;
+  height: 200px;
+  padding: 40px;
+
+  border: 10px solid #f9f9f9;
+}
+
+.triad-canvas--active {
+  display: block;
+}
+
+.triad-canvas + .triad-canvas {
+  margin-top: 50px;
+}
