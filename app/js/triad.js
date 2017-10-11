@@ -1,4 +1,4 @@
-var showTriad = function(container, notes) {
+var showTriads = function(container, notes) {
   function drawCircle(x, y, radius, color) {
     x = Math.round(x);
     y = Math.round(y);
@@ -49,7 +49,7 @@ var showTriad = function(container, notes) {
       fretBoardWidth = fretWidth * NUMBER_OF_FRETS + VERTICAL_BORDER_WIDTH * (NUMBER_OF_FRETS + 1),
       fretBoardHeight = stringDistance * (NUMBER_OF_STRINGS - 1) + HORIZONTAL_BORDER_HEIGHT * NUMBER_OF_STRINGS,
       fretCircleRadius = stringDistance * 0.32,
-      triadCircleRadius = stringDistance * 0.4;
+      triadCircleRadius = stringDistance * 0.45;
 
   // draw neck
   drawLine(0, fretBoardHeight, fretBoardWidth, fretBoardHeight);
@@ -86,18 +86,30 @@ var showTriad = function(container, notes) {
   }
 
   // show number of min fret
-  ctx.font = "20px Georgia";
   ctx.fillStyle = "#CCC";
-  ctx.fillText(minFret + 1, 5, canvas.height - 10);
+  ctx.font = "16px Georgia";
+  ctx.fillText(Math.abs(minFret + 1), 5, canvas.height - 8);
 
   // show notes
   notes.forEach(function(note, i) {
+    if(note.fret === 0) {
+      return
+    }
+
+    var x = (note.fret - minFret + 0.5) * fretWidth,
+        y = fretBoardHeight - note.string * stringDistance - HORIZONTAL_BORDER_HEIGHT * (note.string + 1);
+
     drawCircle(
-      (note.fret - minFret + 0.5) * fretWidth,
-      fretBoardHeight - note.string * stringDistance - HORIZONTAL_BORDER_HEIGHT * (note.string + 1),
+      x,
+      y,
       triadCircleRadius,
       "#70C1B3"
     );
+
+    // draw note name
+    ctx.fillStyle = "#FFF";
+    ctx.font = "16px Helvetica";
+    ctx.fillText(note.note, x - triadCircleRadius / 2, y + 4);
   });
 
   canvas.classList.add("triad-canvas--active");

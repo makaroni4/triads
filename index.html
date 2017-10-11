@@ -5,10 +5,36 @@
   <link rel="stylesheet" href="app/css/triad-frets.css">
 </head>
 <body>
-  <div class="triads">
+  <div class="triads-explorer">
+    <header class="triads-explorer__header header">
+      <div class="header__menu header-menu">
+        <select name="scale" class="header-menu__scale-select scale-select">
+          <option value="c-major">C major</option>
+          <option value="f-major">F major</option>
+        </select>
+
+        <select name="low-string" class="header-menu__low-string-select low-string-select">
+          <option value="0">E high</option>
+          <option value="1">B</option>
+          <option value="2">G</option>
+          <option value="3">D</option>
+          <option value="4">A</option>
+          <option value="5">E low</option>
+        </select>
+
+        <select name="triad-type" class="header-menu__triad-type-select triad-type-select">
+          <option value="root-position">root position</option>
+          <option value="1st-inversion">1st inversion</option>
+          <option value="2nd-inversion">2nd inversion</option>
+        </select>
+      </div>
+    </header>
+
+    <div class="triads-explorer__triads triads">
+    </div>
   </div>
 
-  <script type="text/javascript" src="app/js/frets.js"></script>
+  <script type="text/javascript" src="app/js/triad.js"></script>
   <script type="text/javascript" src="app/js/app.js"></script>
 </body>
 </html>

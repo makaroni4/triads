@@ -1,3 +1,7 @@
+.triads-explorer__triads {
+  margin-top: 40px;
+}
+
 .triad-canvas {
   display: none;
   width: 280px;
