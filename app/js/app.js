@@ -3,7 +3,12 @@
   var NOTES_PROGRESSION = ["E", "F", ["F#", "Gb"], "G", ["G#", "Ab"], "A", ["A#", "Bb"], "B", "C", ["C#", "Db"], "D", ["D#", "Eb"]];
   var SCALE_NOTES = {
     "c-major": ["C", "D", "E", "F", "G", "A", "B"],
-    "f-major": ["F", "G", "A", "Bb", "C", "D", "E"]
+    "f-major": ["F", "G", "A", "Bb", "C", "D", "E"],
+    "g-major": ["G", "A", "B", "C", "D", "E", "F#"],
+    "d-major": ["D", "E", "F#", "G", "A", "B", "C#"],
+    "a-major": ["A", "B", "C#", "D", "E", "F#", "G#"],
+    "e-major": ["E", "F#", "G#", "A", "B", "C#", "D#"],
+    "b-major": ["B", "C#", "D#", "E", "F#", "G#", "A#"]
   };
   var MAX_FRET = 14;
   var MAX_FRET_DISTANCE = 3;
@@ -12,6 +17,13 @@
       scaleSelect = document.getElementsByClassName("scale-select")[0],
       lowStringSelect = document.getElementsByClassName("low-string-select")[0],
       triadTypeSelect = document.getElementsByClassName("triad-type-select")[0];
+
+  Object.keys(SCALE_NOTES).forEach(function(scale) {
+    var opt = document.createElement("option");
+    opt.value = scale;
+    opt.innerHTML = scale;
+    scaleSelect.append(opt);
+  });
 
   var stringNotes = function(string, scale) {
     var openStringNote = GUITAR_OPEN_STRING_NOTES[string],
