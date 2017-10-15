@@ -37,10 +37,20 @@
     var notes = SCALE_NOTES[scale];
     var triads = notes.map(function(note, i) {
       var secondIndex = (i + 2) % 7,
-          thirdIndex = (i + 4) % 7;
+          thirdIndex = (i + 4) % 7,
+          triad = [note, notes[secondIndex], notes[thirdIndex]].reverse();
 
-      // derive notes order from triadType
-      return [note, notes[secondIndex], notes[thirdIndex]].reverse();
+      switch(triadType) {
+        case "1st-inversion":
+          triad.unshift(triad.pop());
+          break;
+        case "2nd-inversion":
+          triad.unshift(triad.pop());
+          triad.unshift(triad.pop());
+          break;
+      };
+
+      return triad;
     });
 
     var triadsOnFret = []
