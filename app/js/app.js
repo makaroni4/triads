@@ -1,6 +1,6 @@
 (function() {
   var GUITAR_OPEN_STRING_NOTES = ["E", "B", "G", "D", "A", "E"];
-  var NOTES_PROGRESSION = ["E", "F", "F#", "G", "G#", "A", "A#", "B", "C", "C#", "D", "D#"];
+  var NOTES_PROGRESSION = ["E", "F", ["F#", "Gb"], "G", ["G#", "Ab"], "A", ["A#", "Bb"], "B", "C", ["C#", "Db"], "D", ["D#", "Eb"]];
   var SCALE_NOTES = {
     "c-major": ["C", "D", "E", "F", "G", "A", "B"],
     "f-major": ["F", "G", "A", "Bb", "C", "D", "E"]
@@ -59,8 +59,10 @@
       var firstNote = triad[0],
           firstString = lowString,
           firstNoteFrets = stringNotes(firstString, scale).reduce(function(noteFrets, stringNote, fret) {
-            if(stringNote === firstNote && fret < MAX_FRET) {
-              noteFrets.push(fret)
+            if(stringNote.constructor === Array && stringNote.indexOf(firstNote) > -1 && fret < MAX_FRET) {
+              noteFrets.push(fret);
+            } else if (stringNote === firstNote && fret < MAX_FRET) {
+              noteFrets.push(fret);
             }
 
             return noteFrets;
@@ -78,7 +80,11 @@
         triad.slice(1).forEach(function(nextTriadNote, k) {
           var currentString = firstString + k + 1,
               fretIndex = stringNotes(currentString, scale).findIndex(function(stringNote, l) {
-                return stringNote === nextTriadNote && Math.abs(l - prevFret) < MAX_FRET_DISTANCE && l >= 0;
+                if(stringNote.constructor === Array) {
+                  return stringNote.indexOf(nextTriadNote) > -1 && Math.abs(l - prevFret) < MAX_FRET_DISTANCE && l >= 0;
+                } else {
+                  return stringNote === nextTriadNote && Math.abs(l - prevFret) < MAX_FRET_DISTANCE && l >= 0;
+                }
               });
 
           if(fretIndex > -1) {
