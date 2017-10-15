@@ -67,8 +67,8 @@ var showTriads = function(container, notes) {
   var cirlceColor = "#f9f9f9";
 
   var minFret = Math.min.apply(null, notes.map(function(note) {
-    return note.fret
-  }));
+    return note.fret;
+  })) || 1;
 
   for(var i = minFret; i <= minFret + NUMBER_OF_FRETS; i++) {
     if(CIRCLE_FRETS.indexOf(i) > -1) {
@@ -86,9 +86,11 @@ var showTriads = function(container, notes) {
   }
 
   // show number of min fret
-  ctx.fillStyle = "#CCC";
-  ctx.font = "16px Georgia";
-  ctx.fillText(Math.abs(minFret + 1), 5, canvas.height - 8);
+  if(minFret > 0) {
+    ctx.fillStyle = "#CCC";
+    ctx.font = "16px Georgia";
+    ctx.fillText(Math.abs(minFret), 5, canvas.height - 8);
+  }
 
   // show notes
   notes.forEach(function(note, i) {

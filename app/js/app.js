@@ -23,6 +23,12 @@
              .concat(NOTES_PROGRESSION.slice(nextNoteIndex));
   };
 
+  var minFret = function(triad) {
+    return Math.min.apply(null, triad.map(function(note) {
+      return note.fret;
+    }));
+  };
+
   var generateTriadsForScale = function() {
     var scale = scaleSelect.options[scaleSelect.selectedIndex].value,
         lowString = parseInt(lowStringSelect.options[lowStringSelect.selectedIndex].value, 10),
@@ -43,7 +49,7 @@
       var firstNote = triad[0],
           firstString = lowString,
           firstNoteFrets = stringNotes(firstString, scale).reduce(function(noteFrets, stringNote, fret) {
-            if(stringNote === firstNote && fret << MAX_FRET) {
+            if(stringNote === firstNote && fret < MAX_FRET) {
               noteFrets.push(fret)
             }
 
@@ -52,7 +58,7 @@
 
       firstNoteFrets.forEach(function(noteFret) {
         var triadNotes = [{
-          fret: noteFret - 1,
+          fret: noteFret,
           string: firstString,
           note: firstNote
         }];
@@ -60,27 +66,34 @@
         var prevFret = noteFret;
 
         triad.slice(1).forEach(function(nextTriadNote, k) {
-          var currentString = firstString + 1 + k,
+          var currentString = firstString + k + 1,
               fretIndex = stringNotes(currentString, scale).findIndex(function(stringNote, l) {
-                return stringNote === nextTriadNote && Math.abs(l - prevFret) < MAX_FRET_DISTANCE;
+                return stringNote === nextTriadNote && Math.abs(l - prevFret) < MAX_FRET_DISTANCE && l >= 0;
               });
 
-          triadNotes.push({
-            fret: fretIndex - 1,
-            string: currentString,
-            note: nextTriadNote
-          });
+          if(fretIndex > -1) {
+            triadNotes.push({
+              fret: fretIndex,
+              string: currentString,
+              note: nextTriadNote
+            });
 
-          prevFret = fretIndex;
+            prevFret = fretIndex;
+          }
         });
 
-        triadsOnFret.push(triadNotes);
+        if(triadNotes.length === 3) {
+          triadsOnFret.push(triadNotes);
+        }
       });
     });
 
-    console.log(triadsOnFret)
-
     triadsContainer.innerHTML = "";
+
+    triadsOnFret.sort(function(a, b) {
+      return minFret(a) > minFret(b);
+    });
+
     triadsOnFret.forEach(function(triad, i) {
       showTriads(triadsContainer, triad);
     });
