@@ -35,7 +35,7 @@ select + select {
   display: block;
 }
 
-.triad-canvas + .triad-canvas {
+.triad-canvas + .triad-header {
   margin-top: 25px;
 }
 

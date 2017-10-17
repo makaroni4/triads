@@ -27,9 +27,16 @@ var showTriads = function(container, notes) {
       VERTICAL_BORDER_WIDTH = 1,
       HORIZONTAL_BORDER_HEIGHT = 1;
 
+  var triadHeader = document.createElement("div")
+  triadHeader.className = "triad-header";
+  triadHeader.innerHTML = majorOrMinor(notes.map(function(note) {
+    return note.note;
+  }).reverse());
+
   var canvas = document.createElement("canvas");
   canvas.className = "triad-canvas";
 
+  container.appendChild(triadHeader);
   container.appendChild(canvas);
 
   var canvasStyle = window.getComputedStyle(canvas, null);
