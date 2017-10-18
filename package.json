@@ -1,0 +1,28 @@
+{
+  "name": "triads",
+  "version": "1.0.0",
+  "description": "Triad explorer on guitar. Shows all available triads (including 1st & 2nd inversions) for each scale / fret range.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "build:prod": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/makaroni4/triads.git"
+  },
+  "keywords": [
+    "guitar",
+    "triads"
+  ],
+  "author": "Anatoli Makarevich",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/makaroni4/triads/issues"
+  },
+  "homepage": "https://github.com/makaroni4/triads#readme",
+  "devDependencies": {
+    "webpack": "^2.2.1"
+  }
+}

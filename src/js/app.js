@@ -1,3 +1,5 @@
+import { showTriads } from './show_triads';
+
 (function() {
   var GUITAR_OPEN_STRING_NOTES = ["E", "B", "G", "D", "A", "E"];
   var NOTES_PROGRESSION = ["E", "F", ["F#", "Gb"], "G", ["G#", "Ab"], "A", ["A#", "Bb"], "B", "C", ["C#", "Db"], "D", ["D#", "Eb"]];
@@ -15,31 +17,8 @@
 
   var triadsContainer = document.getElementsByClassName("triads")[0],
       scaleSelect = document.getElementsByClassName("scale-select")[0],
-      lowStringSelect = document.getElementsByClassName("low-string-select")[0];
-
-  var firstFretSelect = document.getElementsByClassName("first-fret-select")[0],
-      lastFretSelect = document.getElementsByClassName("last-fret-select")[0];
-
-  for(var i = 0; i < 12; i ++) {
-    var opt = document.createElement("option");
-    opt.value = i + 1;
-    opt.innerHTML = i + 1;
-    firstFretSelect.append(opt);
-
-    if(i === 4) {
-      opt.selected = true;
-    }
-
-    opt = document.createElement("option");
-    opt.value = i + 1;
-    opt.innerHTML = i + 1;
-
-    if(i === 8) {
-      opt.selected = true;
-    }
-
-    lastFretSelect.append(opt);
-  }
+      lowStringSelect = document.getElementsByClassName("low-string-select")[0],
+      triadTypeSelect = document.getElementsByClassName("triad-type-select")[0];
 
   Object.keys(SCALE_NOTES).forEach(function(scale) {
     var opt = document.createElement("option");
@@ -66,30 +45,29 @@
 
   var generateTriadsForScale = function() {
     var scale = scaleSelect.options[scaleSelect.selectedIndex].value,
-        lowString = parseInt(lowStringSelect.options[lowStringSelect.selectedIndex].value, 10);
+        lowString = parseInt(lowStringSelect.options[lowStringSelect.selectedIndex].value, 10),
+        triadType = triadTypeSelect.options[triadTypeSelect.selectedIndex].value;
 
-    var notes = SCALE_NOTES[scale],
-        triads = [];
-
-    notes.forEach(function(note, i) {
+    var notes = SCALE_NOTES[scale];
+    var triads = notes.map(function(note, i) {
       var secondIndex = (i + 2) % 7,
           thirdIndex = (i + 4) % 7,
           triad = [note, notes[secondIndex], notes[thirdIndex]].reverse();
 
-      triads.push(triad.slice(0));
+      switch(triadType) {
+        case "1st-inversion":
+          triad.unshift(triad.pop());
+          break;
+        case "2nd-inversion":
+          triad.unshift(triad.pop());
+          triad.unshift(triad.pop());
+          break;
+      };
 
-      // 1st-inversion
-      triad.unshift(triad.pop());
-      triads.push(triad.slice(0));
-
-      //2nd-inversion
-      triad.unshift(triad.pop());
-      triads.push(triad.slice(0));
+      return triad;
     });
 
-    triads = Array.from(new Set(triads));
-
-    var triadsOnFret = [];
+    var triadsOnFret = []
 
     triads.forEach(function(triad, i) {
       var firstNote = triad[0],
@@ -146,21 +124,6 @@
       return minFret(a) > minFret(b);
     });
 
-    // filter for selected frets
-    var firstFret = firstFretSelect.options[firstFretSelect.selectedIndex].value,
-        lastFret = lastFretSelect.options[lastFretSelect.selectedIndex].value;
-
-    triadsOnFret = triadsOnFret.filter(function(triad) {
-      var displayTriad = false;
-      triad.forEach(function(note) {
-        if(note.fret >= firstFret && note.fret <= lastFret) {
-          displayTriad = true;
-        }
-      });
-
-      return displayTriad;
-    });
-
     triadsOnFret.forEach(function(triad, i) {
       showTriads(triadsContainer, triad);
     });
@@ -174,11 +137,7 @@
     generateTriadsForScale();
   };
 
-  firstFretSelect.onchange = function() {
-    generateTriadsForScale();
-  };
-
-  lastFretSelect.onchange = function() {
+  triadTypeSelect.onchange = function() {
     generateTriadsForScale();
   };
 

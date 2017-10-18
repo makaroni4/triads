@@ -1,4 +1,6 @@
-var showTriads = function(container, notes) {
+import { majorOrMinor } from './major_or_minor';
+
+export var showTriads = function(container, notes) {
   function drawCircle(x, y, radius, color) {
     x = Math.round(x);
     y = Math.round(y);
