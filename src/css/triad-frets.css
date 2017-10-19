@@ -12,13 +12,15 @@ html {
 }
 
 select {
+  display: block;
+
   font-family: 'Roboto Mono', monospace;
   font-size: 24px;
   line-height: 30px;
 }
 
-select + select {
-  margin-left: 20px;
+select + .header-menu__select-label {
+  margin-top: 10px;
 }
 
 .triads-explorer-page {
@@ -26,7 +28,7 @@ select + select {
 }
 
 .triads-explorer-page__triads {
-  margin: 40px auto 0;
+  margin: 20px auto 0;
 }
 
 .triads {
@@ -66,6 +68,13 @@ select + select {
   margin-right: auto;
 }
 
+.header-menu__select-label {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  line-height: 14px;
+  color: #5a6b73;
+}
+
 .header-nav {
   display: flex;
   justify-content: flex-end;
@@ -84,4 +93,15 @@ select + select {
 
 .header-nav__item + .header-nav__item {
   margin-left: 20px;
+}
+
+@media (max-width: 600px) {
+  .header-menu {
+    width: 100%;
+  }
+
+  .triads {
+    width: 100%;
+    flex-wrap: no-wrap;
+  }
 }
