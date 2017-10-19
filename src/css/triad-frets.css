@@ -34,13 +34,14 @@ select + .header-menu__select-label {
 .triads {
   display: flex;
   flex-wrap: wrap;
-  width: 600px;
+  width: 640px;
 }
 
 .triad__canvas {
   display: none;
-  width: 280px;
+  width: 300px;
   height: 160px;
+  margin-top: -14px;
 }
 
 .triad__canvas--active {
@@ -52,6 +53,8 @@ select + .header-menu__select-label {
 }
 
 .triad__header {
+  margin-left: 14px;
+
   font-family: 'Roboto Mono', monospace;
   font-size: 14px;
   line-height: 18px;
