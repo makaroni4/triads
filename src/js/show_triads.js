@@ -127,7 +127,9 @@ var showTriads = function(container, notes) {
     // draw note name
     ctx.fillStyle = "#FFF";
     ctx.font = "16px Helvetica";
-    ctx.fillText(note.note, x - triadCircleRadius / 2 + canvasPadding, y + 4 + canvasPadding);
+    ctx.textAlign="center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(note.note, x + canvasPadding, y + canvasPadding);
   });
 
   canvas.classList.add("triad__canvas--active");
