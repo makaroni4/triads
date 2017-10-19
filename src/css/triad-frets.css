@@ -4,7 +4,15 @@ ul {
   padding: 0;
 }
 
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 select {
+  font-family: 'Roboto Mono', monospace;
   font-size: 24px;
   line-height: 30px;
 }
@@ -26,9 +34,6 @@ select + select {
   display: none;
   width: 280px;
   height: 160px;
-  padding: 30px;
-
-  border: 10px solid #f9f9f9;
 }
 
 .triad-canvas--active {
@@ -37,6 +42,12 @@ select + select {
 
 .triad-canvas + .triad-header {
   margin-top: 25px;
+}
+
+.triad-header {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 .header__menu {
@@ -52,6 +63,12 @@ select + select {
   background-color: #B2DBBF;
 
   list-style: none;
+}
+
+.header-nav__item,
+.header-nav__item a {
+  font-family: 'Roboto Mono', monospace;
+  color: #212d33;
 }
 
 .header-nav__item + .header-nav__item {
