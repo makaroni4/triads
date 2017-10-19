@@ -30,16 +30,21 @@ var showTriads = function(container, notes) {
       HORIZONTAL_BORDER_HEIGHT = 1;
 
   var triadHeader = document.createElement("div")
-  triadHeader.className = "triad-header";
+  triadHeader.className = "triad__header";
   triadHeader.innerHTML = majorOrMinor(notes.map(function(note) {
     return note.note;
   }).reverse());
 
-  var canvas = document.createElement("canvas");
-  canvas.className = "triad-canvas";
+  var triadBlock = document.createElement("div");
+  triadBlock.className = "triad";
 
-  container.appendChild(triadHeader);
-  container.appendChild(canvas);
+  var canvas = document.createElement("canvas");
+  canvas.className = "triad__canvas";
+
+  triadBlock.appendChild(triadHeader);
+  triadBlock.appendChild(canvas);
+
+  container.appendChild(triadBlock);
 
   var canvasStyle = window.getComputedStyle(canvas, null);
 
@@ -123,7 +128,7 @@ var showTriads = function(container, notes) {
     ctx.fillText(note.note, x - triadCircleRadius / 2, y + 4);
   });
 
-  canvas.classList.add("triad-canvas--active");
+  canvas.classList.add("triad__canvas--active");
 };
 
 module.exports = showTriads;
