@@ -4,7 +4,7 @@
   "description": "Triad explorer on guitar. Shows all available triads (including 1st & 2nd inversions) for each scale / fret range.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "build": "webpack-dev-server",
     "build:prod": "webpack -p"
   },
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/makaroni4/triads#readme",
   "devDependencies": {
+    "mocha": "^4.0.1",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.9.2"
   }

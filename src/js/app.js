@@ -1,4 +1,4 @@
-import { showTriads } from './show_triads';
+var showTriads = require('./show_triads');
 
 (function() {
   var GUITAR_OPEN_STRING_NOTES = ["E", "B", "G", "D", "A", "E"];

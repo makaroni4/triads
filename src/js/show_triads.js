@@ -1,6 +1,6 @@
-import { majorOrMinor } from './major_or_minor';
+var majorOrMinor = require('./major_or_minor');
 
-export var showTriads = function(container, notes) {
+var showTriads = function(container, notes) {
   function drawCircle(x, y, radius, color) {
     x = Math.round(x);
     y = Math.round(y);
@@ -125,3 +125,5 @@ export var showTriads = function(container, notes) {
 
   canvas.classList.add("triad-canvas--active");
 };
+
+module.exports = showTriads;
