@@ -9,5 +9,16 @@ module.exports = {
     path: path.join(__dirname, "dist", "js"),
     publicPath: "/dist/js/",
     filename: "[name].js"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          "css-loader"
+        ]
+      }
+    ]
   }
 };

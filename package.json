@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "build": "webpack-dev-server",
+    "build": "webpack-dev-server --port 3000",
     "build:prod": "webpack -p"
   },
   "repository": {
@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/makaroni4/triads#readme",
   "devDependencies": {
+    "css-loader": "^0.28.7",
     "mocha": "^4.0.1",
+    "style-loader": "^0.19.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.9.2"
   }
