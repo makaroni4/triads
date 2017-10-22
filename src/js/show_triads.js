@@ -36,7 +36,7 @@ var showTriads = function(container, notes) {
   }).reverse());
 
   var triadBlock = document.createElement("div");
-  triadBlock.className = "triad";
+  triadBlock.className = "triads__triad triad";
 
   var canvas = document.createElement("canvas");
   canvas.className = "triad__canvas";

@@ -48,11 +48,12 @@ select + .header-menu__select-label {
   display: block;
 }
 
-.triad {
+.triads__triad {
   margin: 16px 10px;
 }
 
 .triad__header {
+  /* to match canvas padding */
   margin-left: 14px;
 
   font-family: 'Roboto Mono', monospace;
@@ -61,7 +62,7 @@ select + .header-menu__select-label {
 }
 
 .header__menu {
-  padding: 0 10px;
+  padding: 0 5px;
   margin-top: 30px;
 }
 
@@ -98,7 +99,11 @@ select + .header-menu__select-label {
   margin-left: 20px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 655px) {
+  .header__menu {
+    padding: 0 24px;
+  }
+
   .header-menu {
     width: 100%;
   }
