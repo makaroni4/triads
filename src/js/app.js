@@ -1,4 +1,4 @@
-import "../css/app.css";
+import "../css/app.scss";
 var showTriads = require('./show_triads');
 
 (function() {
