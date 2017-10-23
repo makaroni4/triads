@@ -4,18 +4,17 @@
   <title>Guitar Triads</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" type="text/css" href="dist/app.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300" rel="stylesheet">
 </head>
 <body>
   <div class="triads-explorer-page">
     <header class="triads-explorer-page__header header">
       <ul class="header__nav header-nav">
-        <li class="header-nav__item header-nav__item--active">
-          TRIADS FOR FRETS
-        </li>
         <li class="header-nav__item">
-          <a href="./index.html">TRIADS EXPLORER</a>
+          <a href="./frets.html">TRIADS FOR FRETS</a>
+        </li>
+        <li class="header-nav__item header-nav__item--active">
+          TRIADS EXPLORER
         </li>
       </ul>
 
@@ -37,15 +36,12 @@
         </select>
 
         <div class="header-menu__select-label">
-          Min fret
+          Triad type
         </div>
-        <select name="first-fret" class="header-menu__first-fret-select first-fret-select">
-        </select>
-
-        <div class="header-menu__select-label">
-          Max fret
-        </div>
-        <select name="last-fret" class="header-menu__last-fret-select last-fret-select">
+        <select name="triad-type" class="header-menu__triad-type-select triad-type-select">
+          <option value="root-position">root position</option>
+          <option value="1st-inversion">1st inversion</option>
+          <option value="2nd-inversion">2nd inversion</option>
         </select>
       </div>
     </header>
@@ -53,7 +49,5 @@
     <div class="triads-explorer-page__triads triads">
     </div>
   </div>
-
-  <script type="text/javascript" src="dist/frets-explorer.js"></script>
 </body>
 </html>
