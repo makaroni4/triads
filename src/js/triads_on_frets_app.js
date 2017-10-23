@@ -13,8 +13,8 @@ var showTriads = require('./show_triads');
     "e-major": ["E", "F#", "G#", "A", "B", "C#", "D#"],
     "b-major": ["B", "C#", "D#", "E", "F#", "G#", "A#"]
   };
-  var MAX_FRET = 14;
-  var MAX_FRET_DISTANCE = 3;
+  const MAX_FRET = 14;
+  const MAX_FRET_DISTANCE = 3;
 
   var triadsContainer = document.getElementsByClassName("triads")[0],
       scaleSelect = document.getElementsByClassName("scale-select")[0],

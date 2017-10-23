@@ -1,4 +1,4 @@
-var majorOrMinor = require('./major_or_minor');
+const majorOrMinor = require('./major_or_minor');
 
 var showTriads = function(container, notes) {
   function drawCircle(x, y, radius, color, padding) {

@@ -1,5 +1,5 @@
 var majorOrMinor = function(triad) {
-  var NOTES_PROGRESSION = ["E", "F", ["F#", "Gb"], "G", ["G#", "Ab"], "A", ["A#", "Bb"], "B", "C", ["C#", "Db"], "D", ["D#", "Eb"]];
+  const NOTES_PROGRESSION = ["E", "F", ["F#", "Gb"], "G", ["G#", "Ab"], "A", ["A#", "Bb"], "B", "C", ["C#", "Db"], "D", ["D#", "Eb"]];
 
   var indices = triad.map(function(note) {
     return NOTES_PROGRESSION.findIndex(function(progressionNote) {

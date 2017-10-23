@@ -1,10 +1,10 @@
 import "../css/app.scss";
-var showTriads = require('./show_triads');
+const showTriads = require('./show_triads');
 
 (function() {
-  var GUITAR_OPEN_STRING_NOTES = ["E", "B", "G", "D", "A", "E"];
-  var NOTES_PROGRESSION = ["E", "F", ["F#", "Gb"], "G", ["G#", "Ab"], "A", ["A#", "Bb"], "B", "C", ["C#", "Db"], "D", ["D#", "Eb"]];
-  var SCALE_NOTES = {
+  const GUITAR_OPEN_STRING_NOTES = ["E", "B", "G", "D", "A", "E"];
+  const NOTES_PROGRESSION = ["E", "F", ["F#", "Gb"], "G", ["G#", "Ab"], "A", ["A#", "Bb"], "B", "C", ["C#", "Db"], "D", ["D#", "Eb"]];
+  const SCALE_NOTES = {
     "c-major": ["C", "D", "E", "F", "G", "A", "B"],
     "f-major": ["F", "G", "A", "Bb", "C", "D", "E"],
     "g-major": ["G", "A", "B", "C", "D", "E", "F#"],
@@ -13,8 +13,8 @@ var showTriads = require('./show_triads');
     "e-major": ["E", "F#", "G#", "A", "B", "C#", "D#"],
     "b-major": ["B", "C#", "D#", "E", "F#", "G#", "A#"]
   };
-  var MAX_FRET = 14;
-  var MAX_FRET_DISTANCE = 3;
+  const MAX_FRET = 14;
+  const MAX_FRET_DISTANCE = 3;
 
   var triadsContainer = document.getElementsByClassName("triads")[0],
       scaleSelect = document.getElementsByClassName("scale-select")[0],
