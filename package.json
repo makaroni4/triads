@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha",
     "build": "webpack-dev-server --port 3000",
-    "build:prod": "webpack -p && git subtree push --prefix dist origin gh-pages"
+    "build:prod": "webpack -p",
+    "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "repository": {
     "type": "git",
