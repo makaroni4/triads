@@ -91,16 +91,31 @@ select + .header-menu__select-label {
   background-color: $color-green;
 
   list-style: none;
+
+  &__item + &__item {
+    margin-left: 20px;
+  }
+
+  &__item,
+  &__item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Roboto Mono', monospace;
+    color: $color-black;
+
+    svg {
+      margin-left: 5px;
+    }
+  }
 }
 
-.header-nav__item,
-.header-nav__item a {
-  font-family: 'Roboto Mono', monospace;
-  color: $color-black;
-}
-
-.header-nav__item + .header-nav__item {
-  margin-left: 20px;
+.github-icon {
+  &--xs {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 @media (max-width: 655px) {
