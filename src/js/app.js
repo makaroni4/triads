@@ -1,18 +1,8 @@
 import "../css/app.scss";
 const showTriads = require('./show_triads');
+const CONFIG = require('./config');
 
 (function() {
-  const GUITAR_OPEN_STRING_NOTES = ["E", "B", "G", "D", "A", "E"];
-  const NOTES_PROGRESSION = ["E", "F", ["F#", "Gb"], "G", ["G#", "Ab"], "A", ["A#", "Bb"], "B", "C", ["C#", "Db"], "D", ["D#", "Eb"]];
-  const SCALE_NOTES = {
-    "c-major": ["C", "D", "E", "F", "G", "A", "B"],
-    "f-major": ["F", "G", "A", "Bb", "C", "D", "E"],
-    "g-major": ["G", "A", "B", "C", "D", "E", "F#"],
-    "d-major": ["D", "E", "F#", "G", "A", "B", "C#"],
-    "a-major": ["A", "B", "C#", "D", "E", "F#", "G#"],
-    "e-major": ["E", "F#", "G#", "A", "B", "C#", "D#"],
-    "b-major": ["B", "C#", "D#", "E", "F#", "G#", "A#"]
-  };
   const MAX_FRET = 14;
   const MAX_FRET_DISTANCE = 3;
 
@@ -21,7 +11,7 @@ const showTriads = require('./show_triads');
       lowStringSelect = document.getElementsByClassName("low-string-select")[0],
       triadTypeSelect = document.getElementsByClassName("triad-type-select")[0];
 
-  Object.keys(SCALE_NOTES).forEach(function(scale) {
+  Object.keys(CONFIG.scale_notes).forEach(function(scale) {
     var opt = document.createElement("option");
     opt.value = scale;
     opt.innerHTML = scale;
@@ -29,13 +19,13 @@ const showTriads = require('./show_triads');
   });
 
   var stringNotes = function(string, scale) {
-    var openStringNote = GUITAR_OPEN_STRING_NOTES[string],
-        nextNoteIndex = (NOTES_PROGRESSION.indexOf(openStringNote) + 1) % NOTES_PROGRESSION.length;
+    var openStringNote = CONFIG.openStringsNotes[string],
+        nextNoteIndex = (CONFIG.notesProgression.indexOf(openStringNote) + 1) % CONFIG.notesProgression.length;
 
     return [openStringNote]
-             .concat(NOTES_PROGRESSION.slice(nextNoteIndex))
-             .concat(NOTES_PROGRESSION.slice(0, nextNoteIndex))
-             .concat(NOTES_PROGRESSION.slice(nextNoteIndex));
+             .concat(CONFIG.notesProgression.slice(nextNoteIndex))
+             .concat(CONFIG.notesProgression.slice(0, nextNoteIndex))
+             .concat(CONFIG.notesProgression.slice(nextNoteIndex));
   };
 
   var minFret = function(triad) {
@@ -49,7 +39,7 @@ const showTriads = require('./show_triads');
         lowString = parseInt(lowStringSelect.options[lowStringSelect.selectedIndex].value, 10),
         triadType = triadTypeSelect.options[triadTypeSelect.selectedIndex].value;
 
-    var notes = SCALE_NOTES[scale];
+    var notes = CONFIG.scale_notes[scale];
     var triads = notes.map(function(note, i) {
       var secondIndex = (i + 2) % 7,
           thirdIndex = (i + 4) % 7,
