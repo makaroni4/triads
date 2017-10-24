@@ -24,6 +24,16 @@ var showTriads = function(container, notes) {
     ctx.stroke();
   }
 
+  function backingScale(context) {
+    if ('devicePixelRatio' in window) {
+      if (window.devicePixelRatio > 1) {
+        return window.devicePixelRatio;
+      }
+    }
+
+    return 1;
+  }
+
   var NUMBER_OF_FRETS = 4,
       NUMBER_OF_STRINGS = 6,
       VERTICAL_BORDER_WIDTH = 1,
@@ -46,21 +56,21 @@ var showTriads = function(container, notes) {
 
   container.appendChild(triadBlock);
 
-  var canvasStyle = window.getComputedStyle(canvas, null);
+  var canvasStyle = window.getComputedStyle(canvas, null),
+      ctx = canvas.getContext("2d"),
+      scaleFactor = backingScale(ctx);
 
-  canvas.width = parseInt(canvasStyle.getPropertyValue("width"));
-  canvas.height = parseInt(canvasStyle.getPropertyValue("height"));
-
-  var ctx = canvas.getContext("2d");
+  canvas.width = parseInt(canvasStyle.getPropertyValue("width")) * scaleFactor;
+  canvas.height = parseInt(canvasStyle.getPropertyValue("height")) * scaleFactor;
 
   ctx.translate(0.5, 0.5);
 
   ctx.strokeStyle = "#red";
   ctx.lineWidth = 1;
 
-  var canvasPadding = 14,
-      fretCircleRadius = 9,
-      triadCircleRadius = 13,
+  var canvasPadding = 14 * scaleFactor,
+      fretCircleRadius = 9 * scaleFactor,
+      triadCircleRadius = 13 * scaleFactor,
       fretWidth = (canvas.width - VERTICAL_BORDER_WIDTH * (NUMBER_OF_FRETS + 1) - canvasPadding * 2) / NUMBER_OF_FRETS,
       stringDistance = (canvas.height - HORIZONTAL_BORDER_HEIGHT * NUMBER_OF_STRINGS - canvasPadding * 2) / (NUMBER_OF_STRINGS - 1),
       fretBoardWidth = fretWidth * NUMBER_OF_FRETS + VERTICAL_BORDER_WIDTH * (NUMBER_OF_FRETS + 1) - 1,
@@ -103,7 +113,8 @@ var showTriads = function(container, notes) {
   // show number of min fret
   if(minFret > 0) {
     ctx.fillStyle = "#CCC";
-    ctx.font = "16px Georgia";
+    var fretFontSize = 16 * scaleFactor;
+    ctx.font = fretFontSize + "px Georgia";
     ctx.fillText(Math.abs(minFret), 5 + canvasPadding, canvas.height - canvasPadding - 10);
   }
 
@@ -126,7 +137,8 @@ var showTriads = function(container, notes) {
 
     // draw note name
     ctx.fillStyle = "#FFF";
-    ctx.font = "16px Helvetica";
+    var noteFontSize = 16 * scaleFactor;
+    ctx.font = noteFontSize + "px Helvetica";
     ctx.textAlign="center";
     ctx.textBaseline = "middle";
     ctx.fillText(note.note, x + canvasPadding, y + canvasPadding);
