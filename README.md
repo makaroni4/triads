@@ -4,7 +4,7 @@
 
 **Triads for frets** lists all possible triads between chosen frets, so we can find some inversions and play a song with chords which share some notes.
 
-![triads](https://user-images.githubusercontent.com/768070/31956697-81157d3a-b8ec-11e7-9e34-2b227ef84750.png)
+![guitar triads](https://user-images.githubusercontent.com/768070/32013321-133e6766-b9bb-11e7-870d-7eb9025de6d0.png)
 
 ## Development
 
