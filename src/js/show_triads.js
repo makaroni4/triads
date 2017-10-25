@@ -88,7 +88,7 @@ var showTriads = function(container, notes) {
   }
 
   // draw single circles
-  var CIRCLE_FRETS = [2, 4, 6, 8];
+  var CIRCLE_FRETS = [3, 5, 7, 9];
   var cirlceColor = "#f9f9f9";
 
   var minFret = Math.min.apply(null, notes.map(function(note) {
