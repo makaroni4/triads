@@ -88,7 +88,7 @@ var showTriads = function(container, notes) {
   }
 
   // draw single circles
-  var CIRCLE_FRETS = [3, 5, 7, 9];
+  var CIRCLE_FRETS = [3, 5, 7, 9, 15];
   var cirlceColor = "#f9f9f9";
 
   var minFret = Math.min.apply(null, notes.map(function(note) {
@@ -100,6 +100,13 @@ var showTriads = function(container, notes) {
       var x = (i - minFret) * fretWidth + fretWidth / 2;
 
       drawCircle(x, fretBoardHeight / 2, fretCircleRadius, "#eee", canvasPadding);
+    }
+
+    if(i === 12) {
+      var x = (i - minFret) * fretWidth + fretWidth / 2;
+
+      drawCircle(x, fretBoardHeight / 6 - fretCircleRadius, fretCircleRadius, "#eee", canvasPadding);
+      drawCircle(x, fretBoardHeight * 5 / 6 + fretCircleRadius, fretCircleRadius, "#eee", canvasPadding);
     }
   }
 
