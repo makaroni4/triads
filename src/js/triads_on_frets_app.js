@@ -2,6 +2,7 @@ import "../css/app.scss";
 const showTriads = require('./show_triads');
 const CONFIG = require('./config');
 const generateFretPositions = require('./generate_fret_positions');
+const mobileMenu = require('./mobile_menu');
 
 (function() {
   var triadsContainer = document.getElementsByClassName("triads")[0],
@@ -104,5 +105,6 @@ const generateFretPositions = require('./generate_fret_positions');
     generateTriadsForScale();
   };
 
+  mobileMenu.init();
   generateTriadsForScale();
 })();
